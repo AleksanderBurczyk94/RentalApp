@@ -47,7 +47,7 @@ public class Movie extends Publication{
                 "duration=" + duration +
                 ", forAdults='" + forAdults + '\'' +
                 ", oscarNomination=" + oscarNomination +
-                ", ciriticsAssessment=" + criticsAssessment.getDescription() +
+                ", ciriticsAssessment=ddddgfsdfgfsgs" + criticsAssessment.getDescription() +
                 '}';
     }
 

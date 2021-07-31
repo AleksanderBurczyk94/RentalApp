@@ -12,6 +12,7 @@ public class DataReader {
     private Scanner scanner = new Scanner(System.in);
     private ConsolPrinter consolPrinter = new ConsolPrinter();
 
+    // TODO literówka 31 linia, masz na zielono podkreślone
     public Movie readAndCreateMovie() {
         consolPrinter.printLine("Tytuł");
         String title = getString();
@@ -56,6 +57,7 @@ public class DataReader {
         String honoraryClient = getString();
         return new RentalUser(firstName, lastName, pesel, honoraryClient);
     }
+    // TODO co to jest XD? więcej wolnych linii się nie da :D?
 
 
     public int getInt() {
@@ -64,6 +66,7 @@ public class DataReader {
         return number;
     }
 
+    // TODO można krócej
     public String getString() {
         String name = scanner.nextLine();
         return name;
@@ -78,7 +81,8 @@ public class DataReader {
     public void close() {
         scanner.close();
     }
+    // TODO co to jest XD? więcej wolnych linii się nie da :D?
 
 
 }
-
+    // TODO co to jest XD? więcej wolnych linii się nie da :D?

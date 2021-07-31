@@ -1,5 +1,6 @@
 package model;
 
+// TODO niech serial też ma miejsce na ocenę i niech to będzie po prostu String, enum do kosza
 public enum Rating {
     MISUNDERSTANDING("Nieporozumienie", 1), VERY_BAD("Bardzo zły", 2),
     POOR("Słaby", 3), ACCEPTABLE("Do przyjęcia", 4),

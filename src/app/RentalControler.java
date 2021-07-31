@@ -6,8 +6,10 @@ import io.DataReader;
 import model.*;
 import model.AlphabeticalComparator.AlphabeticalTitleComparator;
 
-
+// TODO literówka w nazwie klasy, podkreślona na zielono
 public class RentalControler {
+    // TODO no właśnie to jest potencjał na enuma
+    // ADD_SERIES(0,"- Dodaj nowy serial") itd., tutaj powtarzasz 2x cyfry i tragicznie to wygląda
     private static final int ADD_SERIES = 0;
     private static final int ADD_MOVIE = 1;
     private static final int DELETE_SERIES = 2;
@@ -36,6 +38,7 @@ public class RentalControler {
     private RentalUser rentalUser = new RentalUser();
 
 
+    // TODO a co jak ktoś wprowadzi inną opcję, zawsze w switchu musi być default
     public void controlLoop() {
         int option;
 
@@ -139,6 +142,7 @@ public class RentalControler {
         } while (option != EXIT);
     }
 
+    // TODO klamry przy ifach
     private void findPublication() {
         consolPrinter.printLine("Podaj tytuł");
         String title = dataReader.getString();
@@ -149,6 +153,7 @@ public class RentalControler {
             System.out.println(publication);
     }
 
+    // TODO klamry przy ifach
     private void findUser() {
         consolPrinter.printLine("Podaj pesel");
         int pesel = dataReader.getInt();
@@ -251,7 +256,7 @@ public class RentalControler {
         consolPrinter.printLine(BACK + "- Cofnij");
         consolPrinter.printLine(EXIT + " - Wyjście z programu");
     }
-
+    // TODO wypożycz*
     private void printUserOptions() {
         consolPrinter.printLine("Wybierz opcję: ");
         consolPrinter.printLine(EXIT + " - Wyjście z programu");

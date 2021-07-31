@@ -7,6 +7,7 @@ public class RentalUser extends User {
     private List<Publication> publicationHistory = new ArrayList<>();
     private List<Publication> borrowedPublications = new ArrayList<>();
 
+    // TODO co to jest?
     Magazine magazine = new Magazine();
 
     public RentalUser(String firstName, String lastName, int pesel, String honoraryClient) {
@@ -31,8 +32,8 @@ public class RentalUser extends User {
     public void borrowedPublication(Publication pub) {
             borrowedPublications.add(pub);
     }
-
-
+    // TODO puste 2 linie
+    // TODO to nie jest miejsce na tę metodę, niech takie klasy modelowe nie robią żadnej logiki
     public boolean returnPublication(Publication pub) {
         boolean result = false;
         if (borrowedPublications.contains(pub)) {

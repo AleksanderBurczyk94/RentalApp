@@ -5,10 +5,14 @@ import java.util.Objects;
 public class Movie extends Publication{
 
     private double duration;
+    // TODO tutaj brakuję getter/setter -> generalnie nie zawsze trzeba tak na pałę to generować bo zobacz, że 80% getterów i setterów nie używasz
+    // TODO podkreśliłem to bo nie widzę konsekwencji
     private String forAdults;
     private int oscarNomination;
+    // TODO String i tyle
     private Rating criticsAssessment;
 
+    // TODO literówka "ciritcs" -> używaj generatorów, nie ma miejsca na błędy Windows shortcut alt + insert
     public Movie(String title, int productionYear, String director, double duration, String forAdults, int oscarNomination, Rating ciriticsAssessment) {
         super(title, productionYear, director);
         this.duration = duration;
@@ -41,6 +45,7 @@ public class Movie extends Publication{
         this.criticsAssessment = criticsAssessment;
     }
 
+    // TODO można to jakoś przyjemniej dla oka wyświetlić?
     @Override
     public String toString() {
         return "Movie{" + super.toString() +

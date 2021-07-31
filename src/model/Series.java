@@ -6,7 +6,8 @@ public class Series extends Publication {
 
     private int numberOfSeasons;
     private String platformToWatch;
-
+    // TODO private String ocenaKrytyka -> jeśli ma być wspólne to do klasy abstrakcyjnej
+    // TODO po co 2 puste linie
 
     public Series(String title, int productionYear, String director, int numberOfseasons, String platform) {
         super(title,productionYear,director);
@@ -29,7 +30,7 @@ public class Series extends Publication {
     public void setPlatformToWatch(String platformToWatch) {
         this.platformToWatch = platformToWatch;
     }
-
+    // TODO po co 3 puste linie
 
 
     @Override

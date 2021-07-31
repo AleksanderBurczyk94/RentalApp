@@ -5,9 +5,12 @@ import exception.UserAlreadyExistsException;
 
 import java.util.*;
 
+// TODO tutaj od biedy możesz w konstruktorze stworzyć jakieś publikację (przy tworzeniu obiektu będziemy mieli już jakieś 10 seriali np.)
 public class Magazine {
+    // TODO nie robimy komentarzy, zła praktyka, tutaj nazwa klasy jest klarowna i wiem, że to jest magazyn
 //    Magazyn filmów
 
+    // TODO czemu to publiczne
     public Map<String, Publication> publications = new HashMap<>();
     private Map<Integer, RentalUser> users = new HashMap<>();
 
@@ -24,7 +27,7 @@ public class Magazine {
         addPublication(movie);
     }
 
-
+    // TODO to nie jest miejsce na takie rzeczy, oddzielny serwis/klasa obsługujący logikę magazynu
     public void addPublication(Publication publication) {
         if (publications.containsKey(publication.getTitle())) {
             throw new PublicationAlreadyExistsException(
@@ -37,6 +40,7 @@ public class Magazine {
         return publications.get(title);
     }
 
+    // TODO to nie jest miejsce na takie rzeczy, oddzielny serwis/klasa obsługujący logikę magazynu
     public void addUser(RentalUser user) {
         if (users.containsKey(user.getPesel())) {
             throw new UserAlreadyExistsException(
@@ -55,14 +59,14 @@ public class Magazine {
         list.sort(comparator);
         return list;
     }
-
+    // TODO to nie jest miejsce na takie rzeczy, oddzielny serwis/klasa obsługujący logikę magazynu
     public Collection<RentalUser> getSortedUsers(Comparator<RentalUser> comparator) {
         List<RentalUser> list = new ArrayList<>(users.values());
         list.sort(comparator);
         return list;
     }
 
-
+    // TODO to nie jest miejsce na takie rzeczy, oddzielny serwis/klasa obsługujący logikę magazynu
     public boolean removePublication(String title) {
         if (publications.containsKey(title)) {
             publications.remove(title);

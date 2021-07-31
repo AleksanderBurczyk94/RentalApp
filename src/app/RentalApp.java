@@ -1,5 +1,7 @@
 package app;
 
+import model.User;
+
 public class RentalApp {
     public static void main(String[] args) {
         final String APP_NAME = "Wypożyczalnia filmów";

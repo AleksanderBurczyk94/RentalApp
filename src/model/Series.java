@@ -10,7 +10,7 @@ public class Series extends Publication {
     // TODO po co 2 puste linie
 
     public Series(String title, int productionYear, String director, int numberOfseasons, String platform) {
-        super(title,productionYear,director);
+        super(title, productionYear, director);
         this.numberOfSeasons = numberOfseasons;
         this.platformToWatch = platform;
     }
@@ -30,8 +30,6 @@ public class Series extends Publication {
     public void setPlatformToWatch(String platformToWatch) {
         this.platformToWatch = platformToWatch;
     }
-    // TODO po co 3 puste linie
-
 
     @Override
     public String toString() {

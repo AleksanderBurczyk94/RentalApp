@@ -13,12 +13,12 @@ public class Movie extends Publication{
     private Rating criticsAssessment;
 
     // TODO literówka "ciritcs" -> używaj generatorów, nie ma miejsca na błędy Windows shortcut alt + insert
-    public Movie(String title, int productionYear, String director, double duration, String forAdults, int oscarNomination, Rating ciriticsAssessment) {
+    public Movie(String title, int productionYear, String director, double duration, String forAdults, int oscarNomination, Rating criticsAssessment) {
         super(title, productionYear, director);
         this.duration = duration;
         this.forAdults = forAdults;
         this.oscarNomination = oscarNomination;
-        this.criticsAssessment = ciriticsAssessment;
+        this.criticsAssessment = criticsAssessment;
     }
 
     public double getDuration() {

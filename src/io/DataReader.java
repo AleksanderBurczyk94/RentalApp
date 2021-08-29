@@ -10,55 +10,52 @@ import java.util.Scanner;
 public class DataReader {
 
     private Scanner scanner = new Scanner(System.in);
-    private ConsolPrinter consolPrinter = new ConsolPrinter();
+    private ConsolePrinter consolePrinter = new ConsolePrinter();
 
-    // TODO literówka 31 linia, masz na zielono podkreślone
     public Movie readAndCreateMovie() {
-        consolPrinter.printLine("Tytuł");
+        consolePrinter.printLine("Tytuł");
         String title = getString();
-        consolPrinter.printLine("Rok produkcji");
+        consolePrinter.printLine("Rok produkcji");
         int productionYear = getInt();
-        consolPrinter.printLine("Reżyser");
+        consolePrinter.printLine("Reżyser");
         String director = getString();
-        consolPrinter.printLine("Długośc trwania");
+        consolePrinter.printLine("Długośc trwania");
         double duration = getDouble();
-        consolPrinter.printLine("Czy jest dla dorosłych");
+        consolePrinter.printLine("Czy jest dla dorosłych");
         String forAdults = getString();
-        consolPrinter.printLine("Ilość nominacji do Oskara");
+        consolePrinter.printLine("Ilość nominacji do Oskara");
         int oscarNomination = getInt();
-        consolPrinter.printLine("Ocena krytyków: ");
+        consolePrinter.printLine("Ocena krytyków: ");
         Rating.printRatingInfo();
-        Rating ciriticsAssessmen = Rating.fromDescription(scanner.nextLine());
-        return new Movie(title, productionYear, director, duration, forAdults, oscarNomination, ciriticsAssessmen);
+        Rating criticsAssessment = Rating.fromDescription(scanner.nextLine());
+        return new Movie(title, productionYear, director, duration, forAdults, oscarNomination, criticsAssessment);
     }
 
     public Series readAndCreateSeries() {
-        consolPrinter.printLine("Tytuł");
+        consolePrinter.printLine("Tytuł");
         String title = getString();
-        consolPrinter.printLine("Rok produkcji");
+        consolePrinter.printLine("Rok produkcji");
         int productionYear = getInt();
-        consolPrinter.printLine("Reżyser");
+        consolePrinter.printLine("Reżyser");
         String director = getString();
-        consolPrinter.printLine("Ilość sezonów");
+        consolePrinter.printLine("Ilość sezonów");
         int numberOfseasons = getInt();
-        consolPrinter.printLine("Gdzie można obejrzeć");
+        consolePrinter.printLine("Gdzie można obejrzeć");
         String platform = getString();
         return new Series(title, productionYear, director, numberOfseasons, platform);
     }
 
     public RentalUser createRentalUser() {
-        consolPrinter.printLine("Imię");
+        consolePrinter.printLine("Imię");
         String firstName = getString();
-        consolPrinter.printLine("Nazwisko");
+        consolePrinter.printLine("Nazwisko");
         String lastName = getString();
-        consolPrinter.printLine("Pesel");
+        consolePrinter.printLine("Pesel");
         int pesel = getInt();
-        consolPrinter.printLine("Honorowy klient");
+        consolePrinter.printLine("Honorowy klient");
         String honoraryClient = getString();
         return new RentalUser(firstName, lastName, pesel, honoraryClient);
     }
-    // TODO co to jest XD? więcej wolnych linii się nie da :D?
-
 
     public int getInt() {
         int number = scanner.nextInt();
@@ -81,8 +78,4 @@ public class DataReader {
     public void close() {
         scanner.close();
     }
-    // TODO co to jest XD? więcej wolnych linii się nie da :D?
-
-
 }
-    // TODO co to jest XD? więcej wolnych linii się nie da :D?

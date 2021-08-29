@@ -7,8 +7,6 @@ import java.util.*;
 
 // TODO tutaj od biedy możesz w konstruktorze stworzyć jakieś publikację (przy tworzeniu obiektu będziemy mieli już jakieś 10 seriali np.)
 public class Magazine {
-    // TODO nie robimy komentarzy, zła praktyka, tutaj nazwa klasy jest klarowna i wiem, że to jest magazyn
-//    Magazyn filmów
 
     // TODO czemu to publiczne
     public Map<String, Publication> publications = new HashMap<>();
@@ -76,4 +74,3 @@ public class Magazine {
         }
     }
 }
-

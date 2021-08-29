@@ -7,16 +7,15 @@ import model.Series;
 
 import java.util.Collection;
 
-// TODO literówka ConsolePrinter*
-public class ConsolPrinter {
+public class ConsolePrinter {
 
-    // TODO klamry
     public void printSeries(Collection<Publication> publications) {
         int countSeries = 0;
         for (Publication publication : publications) {
-            if (publication instanceof Series)
+            if (publication instanceof Series) {
                 System.out.println(publication.toString());
-            countSeries++;
+                countSeries++;
+            }
         }
         if (countSeries == 0) {
             printLine("Brak seriali w wypożyczalni ");
@@ -27,9 +26,10 @@ public class ConsolPrinter {
     public void printMovies(Collection<Publication> publications) {
         int countMovies = 0;
         for (Publication publication : publications) {
-            if (publication instanceof Movie)
+            if (publication instanceof Movie) {
                 printLine(publication.toString());
-            countMovies++;
+                countMovies++;
+            }
         }
         if (countMovies == 0) {
             printLine("Brak filmów w wypożyczalni ");

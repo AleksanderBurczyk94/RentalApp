@@ -30,8 +30,9 @@ public class RentalUser extends User {
     }
 
     public void borrowedPublication(Publication pub) {
-            borrowedPublications.add(pub);
+        borrowedPublications.add(pub);
     }
+
     // TODO puste 2 linie
     // TODO to nie jest miejsce na tę metodę, niech takie klasy modelowe nie robią żadnej logiki
     public boolean returnPublication(Publication pub) {

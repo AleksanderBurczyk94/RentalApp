@@ -1,49 +1,23 @@
 package app;
 
 import exception.UserAlreadyExistsException;
-import io.ConsolPrinter;
+import io.ConsolePrinter;
 import io.DataReader;
 import model.*;
 import model.AlphabeticalComparator.AlphabeticalTitleComparator;
 
-// TODO literówka w nazwie klasy, podkreślona na zielono
-public class RentalControler {
-    // TODO no właśnie to jest potencjał na enuma
-    // ADD_SERIES(0,"- Dodaj nowy serial") itd., tutaj powtarzasz 2x cyfry i tragicznie to wygląda
-    private static final int ADD_SERIES = 0;
-    private static final int ADD_MOVIE = 1;
-    private static final int DELETE_SERIES = 2;
-    private static final int DELETE_MOVIE = 3;
-    private static final int PRINT_SERIES = 4;
-    private static final int PRINT_MOVIES = 5;
-    private static final int ADD_USER = 6;
-    private static final int PRINT_USER = 7;
-    private static final int FIND_PUBLICATION = 8;
-    private static final int FIND_USER = 9;
-    private static final int BACK = 10;
-    private static final int EXIT = 11;
-
-    private static final int BORROW_SERIES = 1;
-    private static final int BORROW_MOVIE = 2;
-    private static final int RETURN_SERIES = 3;
-    private static final int RETURN_MOVIE = 4;
-    private static final int PRINT_AVAILABLE_SERIES = 5;
-    private static final int PRINT_AVAILABLE_MOVIES = 6;
-    private static final int ADMIN = 1;
-    private static final int USER = 2;
+public class RentalController {
 
     private DataReader dataReader = new DataReader();
     private Magazine magazine = new Magazine();
-    private ConsolPrinter consolPrinter = new ConsolPrinter();
+    private ConsolePrinter consolePrinter = new ConsolePrinter();
     private RentalUser rentalUser = new RentalUser();
 
-
-    // TODO a co jak ktoś wprowadzi inną opcję, zawsze w switchu musi być default
     public void controlLoop() {
-        int option;
+        TypeOfUserOption option;
 
         printTypeOfUser();
-        option = dataReader.getInt();
+        option = TypeOfUserOption.createFromInt(dataReader.getInt());
         switch (option) {
             case ADMIN:
                 adminControlLoop();
@@ -51,16 +25,17 @@ public class RentalControler {
             case USER:
                 userControlLoop();
                 break;
+            default:
+                consolePrinter.printLine("Niepoprawna opcja spróbuj pownownie");
         }
-
     }
 
     public void adminControlLoop() {
-        int option;
+        AdminOption option;
 
         do {
             printAdminOptions();
-            option = dataReader.getInt();
+            option = AdminOption.createFromInt(dataReader.getInt());
             switch (option) {
                 case ADD_SERIES:
                     addSeries();
@@ -99,18 +74,17 @@ public class RentalControler {
                     exit();
                     break;
                 default:
-                    consolPrinter.printLine("Nie ma takiej opcji, spróbuj ponownie ");
+                    consolePrinter.printLine("Nie ma takiej opcji, spróbuj ponownie ");
             }
-        } while (option != EXIT);
+        } while (option != AdminOption.EXIT);
     }
 
-
     public void userControlLoop() {
-        int option;
+        UserOption option;
 
         do {
             printUserOptions();
-            option = dataReader.getInt();
+            option = UserOption.createFromInt(dataReader.getInt());
             switch (option) {
                 case BORROW_SERIES:
                     borrowSeries();
@@ -137,33 +111,32 @@ public class RentalControler {
                     exit();
                     break;
                 default:
-                    consolPrinter.printLine("Nie ma takiej opcji, spróbuj ponownie ");
+                    consolePrinter.printLine("Nie ma takiej opcji, spróbuj ponownie ");
             }
-        } while (option != EXIT);
+        } while (option != UserOption.EXIT);
     }
 
-    // TODO klamry przy ifach
     private void findPublication() {
-        consolPrinter.printLine("Podaj tytuł");
+        consolePrinter.printLine("Podaj tytuł");
         String title = dataReader.getString();
         Publication publication = magazine.getPublication(title);
-        if (publication == null)
-            consolPrinter.printLine("Brak takiej publikacji");
-        else
+        if (publication == null) {
+            consolePrinter.printLine("Brak takiej publikacji");
+        } else {
             System.out.println(publication);
+        }
     }
 
-    // TODO klamry przy ifach
     private void findUser() {
-        consolPrinter.printLine("Podaj pesel");
+        consolePrinter.printLine("Podaj pesel");
         int pesel = dataReader.getInt();
         User user = magazine.getUser(pesel);
-        if (user == null)
-            consolPrinter.printLine("Brak takiego użytkownika");
-        else
+        if (user == null) {
+            consolePrinter.printLine("Brak takiego użytkownika");
+        } else {
             System.out.println(user);
+        }
     }
-
 
     private void addSeries() {
         Series series = dataReader.readAndCreateSeries();
@@ -178,10 +151,9 @@ public class RentalControler {
     private void returnSeries() {
         Series series = dataReader.readAndCreateSeries();
         if (rentalUser.returnPublication(series)) {
-            consolPrinter.printLine("Zwrocono serial");
+            consolePrinter.printLine("Zwrocono serial");
         } else
-            consolPrinter.printLine("Nie udało się zwrócić filmu");
-
+            consolePrinter.printLine("Nie udało się zwrócić filmu");
     }
 
     private void returnMovie() {
@@ -193,101 +165,85 @@ public class RentalControler {
         Movie movie = dataReader.readAndCreateMovie();
         rentalUser.borrowedPublication(movie);
         if (magazine.removePublication(movie.getTitle())) {
-            consolPrinter.printLine("Wypożyczono film");
+            consolePrinter.printLine("Wypożyczono film");
         } else
-            consolPrinter.printLine("Brak wskazanego filmu w wypożyczalni");
+            consolePrinter.printLine("Brak wskazanego filmu w wypożyczalni");
     }
 
     private void borrowSeries() {
         Series series = dataReader.readAndCreateSeries();
         if (magazine.removePublication(series.getTitle())) {
             rentalUser.borrowedPublication(series);
-            consolPrinter.printLine("Wypożyczono serial");
+            consolePrinter.printLine("Wypożyczono serial");
         } else
-            consolPrinter.printLine("Brak wskazanego serialu w wypożyczalni");
+            consolePrinter.printLine("Brak wskazanego serialu w wypożyczalni");
     }
-
 
     private void addUser() {
         RentalUser rentalUser = dataReader.createRentalUser();
         try {
             magazine.addUser(rentalUser);
         } catch (UserAlreadyExistsException e) {
-            consolPrinter.printLine(e.getMessage());
+            consolePrinter.printLine(e.getMessage());
         }
     }
 
     private void deleteMovie() {
-        consolPrinter.printLine("Podaj tytuł");
+        consolePrinter.printLine("Podaj tytuł");
         String title = dataReader.getString();
         if (magazine.removePublication(title)) {
-            consolPrinter.printLine("Usunięto film");
+            consolePrinter.printLine("Usunięto film");
         } else
-            consolPrinter.printLine("Brak wskazanego filmu w wypożyczalni");
+            consolePrinter.printLine("Brak wskazanego filmu w wypożyczalni");
     }
 
     private void deleteSeries() {
-        consolPrinter.printLine("Podaj tytuł");
+        consolePrinter.printLine("Podaj tytuł");
         String title = dataReader.getString();
         if (magazine.removePublication(title)) {
-            consolPrinter.printLine("Usunięto serial");
+            consolePrinter.printLine("Usunięto serial");
         } else
-            consolPrinter.printLine("Brak wskazanego serialu w wypożyczalni");
+            consolePrinter.printLine("Brak wskazanego serialu w wypożyczalni");
     }
 
     private void printTypeOfUser() {
-        consolPrinter.printLine("Wybierz rodzaj użytkownika");
-        consolPrinter.printLine("1 - admin");
-        consolPrinter.printLine("2 - użytkownik");
+        consolePrinter.printLine("Wybierz rodzaj użytkownika");
+        for (TypeOfUserOption value : TypeOfUserOption.values()) {
+            consolePrinter.printLine(value.toString());
+        }
     }
 
     private void printAdminOptions() {
-        consolPrinter.printLine("Wybierz opcję: ");
-        consolPrinter.printLine(ADD_SERIES + " - Dodaj nowy serial");
-        consolPrinter.printLine(ADD_MOVIE + " - Dododaj nowy film");
-        consolPrinter.printLine(DELETE_SERIES + " - Usuń serial");
-        consolPrinter.printLine(DELETE_MOVIE + " - Usuń filmy");
-        consolPrinter.printLine(PRINT_SERIES + " - Wyświetl dostępne seriale");
-        consolPrinter.printLine(PRINT_MOVIES + " - Wyświetl dostępne filmy");
-        consolPrinter.printLine(ADD_USER + " - Dodaj użytkownika");
-        consolPrinter.printLine(PRINT_USER + " - Wyświetl użytkownika");
-        consolPrinter.printLine(FIND_PUBLICATION + " - Znajdź serila lub film");
-        consolPrinter.printLine(FIND_USER + " -Znajdź urzytkownika");
-        consolPrinter.printLine(BACK + "- Cofnij");
-        consolPrinter.printLine(EXIT + " - Wyjście z programu");
+        consolePrinter.printLine("Wybierz opcję: ");
+        for (AdminOption value : AdminOption.values()) {
+            consolePrinter.printLine(value.toString());
+        }
+
     }
-    // TODO wypożycz*
+
     private void printUserOptions() {
-        consolPrinter.printLine("Wybierz opcję: ");
-        consolPrinter.printLine(EXIT + " - Wyjście z programu");
-        consolPrinter.printLine(BORROW_SERIES + " - Wyporzycz serial");
-        consolPrinter.printLine(BORROW_MOVIE + " - Wyporzycz film");
-        consolPrinter.printLine(RETURN_SERIES + " - Zwróć serial");
-        consolPrinter.printLine(RETURN_MOVIE + " - Zwróć filmy");
-        consolPrinter.printLine(PRINT_AVAILABLE_SERIES + " - Wyświetl dostępne seriale");
-        consolPrinter.printLine(PRINT_AVAILABLE_MOVIES + " - Wyświetl dostępne filmy");
-        consolPrinter.printLine(BACK + "- Cofnij");
+        consolePrinter.printLine("Wybierz opcję: ");
+        for (UserOption value : UserOption.values()) {
+            consolePrinter.printLine(value.toString());
+        }
     }
 
     private void printSeries() {
-        consolPrinter.printSeries(magazine.getSortedPublications(new AlphabeticalTitleComparator()));
+        consolePrinter.printSeries(magazine.getSortedPublications(new AlphabeticalTitleComparator()));
     }
 
     private void printMovies() {
-        consolPrinter.printMovies(magazine.getSortedPublications(new AlphabeticalTitleComparator()));
+        consolePrinter.printMovies(magazine.getSortedPublications(new AlphabeticalTitleComparator()));
     }
 
 
     private void printUsers() {
-        consolPrinter.printUsers(magazine.getSortedUsers(
+        consolePrinter.printUsers(magazine.getSortedUsers(
                 (p1, p2) -> p1.getLastName().compareToIgnoreCase(p2.getLastName())));
     }
 
-
     private void exit() {
-        consolPrinter.printLine("Koniec programu, spierdlaj!");
+        consolePrinter.printLine("Koniec programu, spierdlaj!");
         dataReader.close();
     }
-
-
 }

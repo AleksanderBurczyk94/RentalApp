@@ -4,11 +4,9 @@ import java.util.*;
 
 public class RentalUser extends User {
 
-    private List<Publication> publicationHistory = new ArrayList<>();
-    private List<Publication> borrowedPublications = new ArrayList<>();
 
-    // TODO co to jest?
-    Magazine magazine = new Magazine();
+    public List<Publication> publicationHistory = new ArrayList<>();
+    public List<Publication> borrowedPublications = new ArrayList<>();
 
     public RentalUser(String firstName, String lastName, int pesel, String honoraryClient) {
         super(firstName, lastName, pesel, honoraryClient);
@@ -23,27 +21,6 @@ public class RentalUser extends User {
 
     public List<Publication> getBorrowedPublications() {
         return borrowedPublications;
-    }
-
-    public void addPublicationToHistory(Publication pub) {
-        publicationHistory.add(pub);
-    }
-
-    public void borrowedPublication(Publication pub) {
-        borrowedPublications.add(pub);
-    }
-
-    // TODO puste 2 linie
-    // TODO to nie jest miejsce na tę metodę, niech takie klasy modelowe nie robią żadnej logiki
-    public boolean returnPublication(Publication pub) {
-        boolean result = false;
-        if (borrowedPublications.contains(pub)) {
-            borrowedPublications.remove(pub);
-            magazine.publications.put(pub.getTitle(), pub);
-            addPublicationToHistory(pub);
-            result = true;
-        }
-        return result;
     }
 
     @Override

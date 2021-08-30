@@ -1,10 +1,9 @@
-package model.AlphabeticalComparator;
+package comparators;
 
 import model.Publication;
 
 import java.util.Comparator;
 
-// TODO czemu to jest w packagu model, jeśli to nie ma nic wspólnego z modelem?
 public class AlphabeticalTitleComparator implements Comparator<Publication> {
 
     @Override

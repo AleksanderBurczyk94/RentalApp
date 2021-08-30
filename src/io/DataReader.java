@@ -2,15 +2,14 @@ package io;
 
 import model.Movie;
 import model.RentalUser;
-import model.Rating;
 import model.Series;
 
 import java.util.Scanner;
 
 public class DataReader {
 
-    private Scanner scanner = new Scanner(System.in);
-    private ConsolePrinter consolePrinter = new ConsolePrinter();
+    private final Scanner scanner = new Scanner(System.in);
+    private final ConsolePrinter consolePrinter = new ConsolePrinter();
 
     public Movie readAndCreateMovie() {
         consolePrinter.printLine("Tytuł");
@@ -26,8 +25,7 @@ public class DataReader {
         consolePrinter.printLine("Ilość nominacji do Oskara");
         int oscarNomination = getInt();
         consolePrinter.printLine("Ocena krytyków: ");
-        Rating.printRatingInfo();
-        Rating criticsAssessment = Rating.fromDescription(scanner.nextLine());
+        String criticsAssessment = getString();
         return new Movie(title, productionYear, director, duration, forAdults, oscarNomination, criticsAssessment);
     }
 
@@ -42,7 +40,9 @@ public class DataReader {
         int numberOfseasons = getInt();
         consolePrinter.printLine("Gdzie można obejrzeć");
         String platform = getString();
-        return new Series(title, productionYear, director, numberOfseasons, platform);
+        consolePrinter.printLine("Ocena krytyka");
+        String criticsAssessment = getString();
+        return new Series(title, productionYear, director, numberOfseasons, platform, criticsAssessment);
     }
 
     public RentalUser createRentalUser() {
@@ -63,10 +63,8 @@ public class DataReader {
         return number;
     }
 
-    // TODO można krócej
     public String getString() {
-        String name = scanner.nextLine();
-        return name;
+        return scanner.nextLine();
     }
 
     public double getDouble() {

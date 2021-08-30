@@ -10,8 +10,8 @@ public enum AdminOption {
     ADD_USER(6, " - Dodaj użytkownika"),
     PRINT_USER(7, " - Wyświetl użytkownika"),
     FIND_PUBLICATION(8, " - Znajdź seril lub film"),
-    FIND_USER(9, " -Znajdź urzytkownika"),
-    BACK(10, "- Cofnij"),
+    FIND_USER(9, " - Znajdź urzytkownika"),
+    BACK(10, " - Cofnij"),
     EXIT(11, " - Wyjście z programu");
 
     private final int value;
@@ -32,7 +32,7 @@ public enum AdminOption {
 
     @Override
     public String toString() {
-        return value + " - " + description;
+        return value + description;
     }
 
     static AdminOption createFromInt(int option) {

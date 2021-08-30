@@ -32,6 +32,6 @@ public enum UserOption {
 
     @Override
     public String toString() {
-        return value + " - " + description;
+        return value + description;
     }
 }

@@ -6,13 +6,21 @@ public class Series extends Publication {
 
     private int numberOfSeasons;
     private String platformToWatch;
-    // TODO private String ocenaKrytyka -> jeśli ma być wspólne to do klasy abstrakcyjnej
-    // TODO po co 2 puste linie
+    private String criticsAssessment;
 
-    public Series(String title, int productionYear, String director, int numberOfseasons, String platform) {
+    public Series(String title, int productionYear, String director, int numberOfSeasons, String platformToWatch, String criticsAssessment) {
         super(title, productionYear, director);
-        this.numberOfSeasons = numberOfseasons;
-        this.platformToWatch = platform;
+        this.numberOfSeasons = numberOfSeasons;
+        this.platformToWatch = platformToWatch;
+        this.criticsAssessment = criticsAssessment;
+    }
+
+    public String getCriticsAssessment() {
+        return criticsAssessment;
+    }
+
+    public void setCriticsAssessment(String criticsAssessment) {
+        this.criticsAssessment = criticsAssessment;
     }
 
     public int getNumberOfSeasons() {
@@ -33,10 +41,7 @@ public class Series extends Publication {
 
     @Override
     public String toString() {
-        return "Serie{" + super.toString() +
-                "numberOfseasons=" + numberOfSeasons +
-                ", platform='" + platformToWatch + '\'' +
-                '}';
+        return super.toString() + "Numer sezonu: " + numberOfSeasons + "Platforma do obejrzenia: " + platformToWatch;
     }
 
     @Override

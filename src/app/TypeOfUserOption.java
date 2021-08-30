@@ -21,7 +21,7 @@ public enum TypeOfUserOption {
     }
 
     static TypeOfUserOption createFromInt(int option) {
-        return TypeOfUserOption.values()[option];
+        return TypeOfUserOption.values()[option-1];
     }
 
     @Override

@@ -1,17 +1,20 @@
 package app;
 
+import service.MagazineService;
+import service.RentalUserService;
 import exception.UserAlreadyExistsException;
 import io.ConsolePrinter;
 import io.DataReader;
 import model.*;
-import model.AlphabeticalComparator.AlphabeticalTitleComparator;
+import comparators.AlphabeticalTitleComparator;
 
 public class RentalController {
 
     private DataReader dataReader = new DataReader();
     private Magazine magazine = new Magazine();
+    private MagazineService magazineService = new MagazineService();
     private ConsolePrinter consolePrinter = new ConsolePrinter();
-    private RentalUser rentalUser = new RentalUser();
+    private RentalUserService rentalUserService= new RentalUserService();
 
     public void controlLoop() {
         TypeOfUserOption option;
@@ -140,17 +143,17 @@ public class RentalController {
 
     private void addSeries() {
         Series series = dataReader.readAndCreateSeries();
-        magazine.addSeries(series);
+        magazineService.addSeries(series);
     }
 
     private void addMovie() {
         Movie movie = dataReader.readAndCreateMovie();
-        magazine.addMovie(movie);
+        magazineService.addMovie(movie);
     }
 
     private void returnSeries() {
         Series series = dataReader.readAndCreateSeries();
-        if (rentalUser.returnPublication(series)) {
+        if (rentalUserService.returnPublication(series)) {
             consolePrinter.printLine("Zwrocono serial");
         } else
             consolePrinter.printLine("Nie udało się zwrócić filmu");
@@ -158,13 +161,13 @@ public class RentalController {
 
     private void returnMovie() {
         Movie movie = dataReader.readAndCreateMovie();
-        rentalUser.returnPublication(movie);
+        rentalUserService.returnPublication(movie);
     }
 
     private void borrowMovie() {
         Movie movie = dataReader.readAndCreateMovie();
-        rentalUser.borrowedPublication(movie);
-        if (magazine.removePublication(movie.getTitle())) {
+        rentalUserService.borrowedPublication(movie);
+        if (magazineService.removePublication(movie.getTitle())) {
             consolePrinter.printLine("Wypożyczono film");
         } else
             consolePrinter.printLine("Brak wskazanego filmu w wypożyczalni");
@@ -172,8 +175,8 @@ public class RentalController {
 
     private void borrowSeries() {
         Series series = dataReader.readAndCreateSeries();
-        if (magazine.removePublication(series.getTitle())) {
-            rentalUser.borrowedPublication(series);
+        if (magazineService.removePublication(series.getTitle())) {
+            rentalUserService.borrowedPublication(series);
             consolePrinter.printLine("Wypożyczono serial");
         } else
             consolePrinter.printLine("Brak wskazanego serialu w wypożyczalni");
@@ -182,7 +185,7 @@ public class RentalController {
     private void addUser() {
         RentalUser rentalUser = dataReader.createRentalUser();
         try {
-            magazine.addUser(rentalUser);
+            magazineService.addUser(rentalUser);
         } catch (UserAlreadyExistsException e) {
             consolePrinter.printLine(e.getMessage());
         }
@@ -191,7 +194,7 @@ public class RentalController {
     private void deleteMovie() {
         consolePrinter.printLine("Podaj tytuł");
         String title = dataReader.getString();
-        if (magazine.removePublication(title)) {
+        if (magazineService.removePublication(title)) {
             consolePrinter.printLine("Usunięto film");
         } else
             consolePrinter.printLine("Brak wskazanego filmu w wypożyczalni");
@@ -200,7 +203,7 @@ public class RentalController {
     private void deleteSeries() {
         consolePrinter.printLine("Podaj tytuł");
         String title = dataReader.getString();
-        if (magazine.removePublication(title)) {
+        if (magazineService.removePublication(title)) {
             consolePrinter.printLine("Usunięto serial");
         } else
             consolePrinter.printLine("Brak wskazanego serialu w wypożyczalni");
@@ -229,16 +232,16 @@ public class RentalController {
     }
 
     private void printSeries() {
-        consolePrinter.printSeries(magazine.getSortedPublications(new AlphabeticalTitleComparator()));
+        consolePrinter.printPublications(magazineService.getSortedPublications(new AlphabeticalTitleComparator()));
     }
 
     private void printMovies() {
-        consolePrinter.printMovies(magazine.getSortedPublications(new AlphabeticalTitleComparator()));
+        consolePrinter.printPublications(magazineService.getSortedPublications(new AlphabeticalTitleComparator()));
     }
 
 
     private void printUsers() {
-        consolePrinter.printUsers(magazine.getSortedUsers(
+        consolePrinter.printUsers(magazineService.getSortedUsers(
                 (p1, p2) -> p1.getLastName().compareToIgnoreCase(p2.getLastName())));
     }
 

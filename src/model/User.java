@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Objects;
-
 public abstract class User {
     private String firstName;
     private String lastName;
@@ -34,7 +32,7 @@ public abstract class User {
         this.lastName = lastName;
     }
 
-    int getPesel() {
+    public int getPesel() {
         return pesel;
     }
 

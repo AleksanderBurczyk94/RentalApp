@@ -30,6 +30,7 @@ public class ConsolePrinter {
         }
     }
 
+    // poćwicz streamy
     public void printUsers(Collection<RentalUser> users) {
         for (RentalUser rentalUser : users) {
             printLine(rentalUser.toString());

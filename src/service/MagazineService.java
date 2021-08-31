@@ -11,6 +11,11 @@ import java.util.List;
 
 public class MagazineService {
 
+    // stwórz to w konstruktorze ale tak aby był bezargumentowy więc:
+    // public MagazineService(){
+    // ... zainicjalizuj magazyn
+    //
+    // }
     Magazine magazine = new Magazine();
 
     public void addSeries(Series series) {
@@ -38,12 +43,14 @@ public class MagazineService {
         magazine.users.put(user.getPesel(), user);
     }
 
+    // poćwicz streamy
     public Collection<Publication> getSortedPublications(Comparator<Publication> comparator) {
         List<Publication> list = new ArrayList<>(magazine.publications.values());
         list.sort(comparator);
         return list;
     }
 
+    // poćwicz streamy
     public Collection<RentalUser> getSortedUsers(Comparator<RentalUser> comparator) {
         List<RentalUser> list = new ArrayList<>(magazine.users.values());
         list.sort(comparator);

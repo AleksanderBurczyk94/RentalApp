@@ -50,6 +50,7 @@ public class DataReader {
         String firstName = getString();
         consolePrinter.printLine("Nazwisko");
         String lastName = getString();
+        // TODO pesel może mieć max. 11 znaków, zabezpiecz
         consolePrinter.printLine("Pesel");
         int pesel = getInt();
         consolePrinter.printLine("Honorowy klient");

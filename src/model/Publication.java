@@ -3,6 +3,7 @@ package model;
 import java.util.Objects;
 
 public abstract class Publication {
+    // TODO bądź konsekwentny, albo pod klasami piszesz od razu albo robisz enter
     private String title;
     private int productionYear;
     private String director;

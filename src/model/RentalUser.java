@@ -3,6 +3,7 @@ package model;
 import java.util.*;
 
 public class RentalUser extends User {
+    // TODO 2 linie puste, 1 styka
 
 
     public List<Publication> publicationHistory = new ArrayList<>();

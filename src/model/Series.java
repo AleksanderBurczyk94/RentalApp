@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Series extends Publication {
 
     private int numberOfSeasons;
+    // TODO zrób enuma np. Netflix, Hbo, Amazon
     private String platformToWatch;
     private String criticsAssessment;
 

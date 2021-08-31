@@ -3,7 +3,9 @@ package model;
 public abstract class User {
     private String firstName;
     private String lastName;
+    // TODO to nie może być int (Poczytaj o zakresie int i długości peselu)
     private int pesel;
+    // TODO to raczej boolean -> 2 wartości, jest albo nie
     private String honoraryClient;
 
     protected User(String firstName, String lastName, int pesel, String honoraryClient) {
@@ -54,3 +56,4 @@ public abstract class User {
                 " Pesel: " + pesel + " " + "Honorowy klient: " + honoraryClient;
     }
 }
+// TODO jedna linia na samym końcu

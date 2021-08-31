@@ -1,6 +1,9 @@
 package app;
 
 public enum UserOption {
+    // TODO wyjście z programu w adminie jest jako ostatnie, a tutaj 1
+    // jakoś z dupy, opcje exit na sam koniec, intuicyjnie
+    // nie chcemy aby klient na wejście zobaczył wyjście z programu bo nic nie wypożyczy
     EXIT(0," - Wyjście z programu"),
     BORROW_SERIES(1," - Wypożycz serial"),
      BORROW_MOVIE(2," - Wypożycz film"),

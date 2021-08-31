@@ -6,6 +6,7 @@ import model.RentalUser;
 
 public class RentalUserService {
 
+    // TODO to samo co w magazin service
     Magazine magazine = new Magazine();
     RentalUser rentalUser = new RentalUser();
 

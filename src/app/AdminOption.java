@@ -8,8 +8,10 @@ public enum AdminOption {
     PRINT_SERIES(4, " - Wyświetl dostępne seriale"),
     PRINT_MOVIES(5, " - Wyświetl dostępne filmy"),
     ADD_USER(6, " - Dodaj użytkownika"),
+    // TODO z tego co widzę to ta metoda drukuję wszystkich użytkowników print_users -> wyświetl użytkowników
     PRINT_USER(7, " - Wyświetl użytkownika"),
     FIND_PUBLICATION(8, " - Znajdź seril lub film"),
+    // TODO literówka
     FIND_USER(9, " - Znajdź urzytkownika"),
     BACK(10, " - Cofnij"),
     EXIT(11, " - Wyjście z programu");
